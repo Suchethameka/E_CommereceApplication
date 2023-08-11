@@ -8,15 +8,23 @@
     tools:context=".fragments.AppIntroDemoFragment">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="100dp"
-        android:padding="50dp"
+        android:layout_marginBottom="50dp"
+        android:padding="16dp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="25dp">
+        app:cardCornerRadius="16dp">
+        <LinearLayout
+
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,17 +32,128 @@
             android:orientation="horizontal"
             android:padding="10dp">
             <androidx.appcompat.widget.AppCompatImageView
+
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/Smartphones"
-                />
+                android:layout_marginRight="5dp"
+                app:srcCompat="@drawable/img"/>
             <androidx.appcompat.widget.AppCompatImageView
+
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/Laptops"/>
+                android:layout_marginLeft="5dp"
+                app:srcCompat="@drawable/img_1"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile Phones"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:text="Laptops"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <androidx.appcompat.widget.AppCompatImageView
+
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@drawable/img_2"/>
+            <androidx.appcompat.widget.AppCompatImageView
+
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="5dp"
+                app:srcCompat="@drawable/img_3"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Men's Wear"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:text="Women's Wear"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <androidx.appcompat.widget.AppCompatImageView
+
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@drawable/img_4"/>
+            <androidx.appcompat.widget.AppCompatImageView
+
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="5dp"
+                app:srcCompat="@drawable/img_5"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Children's wear"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:text="Groceries"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"/>
+            </LinearLayout>
     </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
-
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        android:text="Choose Your Way Of Shopping"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
