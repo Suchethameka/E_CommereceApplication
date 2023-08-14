@@ -4,4 +4,9 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <color name="primary_text_color">#3F51B5</color>
+    <color name="secondary_text_color">#FF5722</color>
+
+
 </resources>
