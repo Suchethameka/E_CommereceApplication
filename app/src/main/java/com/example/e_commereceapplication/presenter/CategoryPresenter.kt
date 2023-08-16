@@ -1,20 +1,25 @@
 package com.example.e_commereceapplication.presenter
 
-import com.example.e_commereceapplication.data.CategoryResponse
-import com.example.e_commereceapplication.model.CategoryResponseCallback
-import com.example.e_commereceapplication.model.VolleyHandler
+import com.example.e_commereceapplication.model.Network.ResponseCallback
+import com.example.e_commereceapplication.model.Network.VolleyHandler
+import com.example.e_commereceapplication.model.Network.category.CategoryResponse
 
-class CategoryPresenter(private val view: MVPCategory.CategoryView, private val volleyHandler: VolleyHandler) : MVPCategory.ICategoryPresenter {
+class CategoryPresenter(private val volleyHandler: VolleyHandler, val categoryView: MVPShoppingCart.CategoryView)
+    :MVPShoppingCart.ICategoryPresenter {
+    override fun getCategories() {
+        volleyHandler.getCategories(object: ResponseCallback {
 
-    override fun fetchCategories() {
-        volleyHandler.fetchCategories(object : CategoryResponseCallback {
-            override fun onCategoryFetchSuccess(response: CategoryResponse) {
-                view.showCategoryList(response.categories)
+            override fun success(response: Any?) {
+                (response as? CategoryResponse)?.let {
+                    categoryView.setSuccess(it)
+                }
             }
 
-            override fun onCategoryFetchFailure(error: String) {
-                view.showCategoryFetchError(error)
+            override fun failure() {
+                categoryView.setError()
             }
+
         })
     }
+
 }

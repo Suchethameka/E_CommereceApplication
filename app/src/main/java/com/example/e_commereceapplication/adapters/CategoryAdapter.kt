@@ -1,55 +1,39 @@
 package com.example.e_commereceapplication.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.e_commereceapplication.R
-import com.example.e_commereceapplication.data.Category
+import com.example.e_commereceapplication.databinding.CategoriesItemBinding
+import com.example.e_commereceapplication.model.Network.VolleyConstants
+import com.example.e_commereceapplication.model.Network.category.Category
 import com.squareup.picasso.Picasso
 
-class CategoryAdapter(private val itemClickListener: OnCategoryItemClickListener) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-    private val categories: MutableList<Category> = mutableListOf()
+class CategoryAdapter(val categoryList:List<Category>, val itemClickListener: ItemClickListener):
+    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    fun setCategories(categories: List<Category>) {
-        this.categories.clear()
-        this.categories.addAll(categories)
-        notifyDataSetChanged()
-    }
+    inner class CategoryViewHolder(val binding: CategoriesItemBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(category: Category){
+            with(binding){
+                tvCategoryName.text = category.category_name
+                val image = "${VolleyConstants.IMAGE_URL}${category.category_image_url}"
+                Picasso.get().load(image).into(categoryImage)
+                binding.root.setOnClickListener {
+                    itemClickListener.isSelected(category.category_id)
+                }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
-        return CategoryViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = categories[position]
-        holder.bind(category)
-    }
-
-    override fun getItemCount(): Int = categories.size
-
-    inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind(category: Category) {
-            itemView.findViewById<TextView>(R.id.text_category_name).text = category.category_name
-            val imageUrl = BASE_IMAGE_URL + category.category_image_url
-            Picasso.get()
-                .load(imageUrl)
-                .into(itemView.findViewById(R.id.image_category) as ImageView)
-            itemView.setOnClickListener {
-                itemClickListener.onItemClick(category)
             }
         }
     }
 
-    interface OnCategoryItemClickListener {
-        fun onItemClick(category: Category)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = CategoriesItemBinding.inflate(layoutInflater)
+        return CategoryViewHolder(binding)
     }
 
-    companion object {
-        private const val BASE_IMAGE_URL = "http://10.0.2.2/myshop/images/Category/"
+    override fun getItemCount() = categoryList.size
+
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        holder.bind(categoryList[position])
     }
 }
