@@ -53,19 +53,16 @@ class ProductDetailsFragment : Fragment() {
         initDB()
         presenter = ProductDetailsPresenter(VolleyHandler(requireContext()), cartDao,object:MVPShoppingCart.ProductDetailsView{
             override fun setError() {
-                TODO("Not yet implemented")
             }
 
             @SuppressLint("SetTextI18n")
             override fun setSuccess(productDescriptionResponse: ProductDescriptionResponse) {
-                //productDescriptionResponse
+
                 with(binding){
                     productDName.text = productDescriptionResponse.product.product_name
                     productDDescription.text = productDescriptionResponse.product.description
                     ratingBar.rating = productDescriptionResponse.product.average_rating.toFloat()
                     productDPrice.text = "$ ${productDescriptionResponse.product.price}"
-
-
                 }
 
                 binding.addToCart.setOnClickListener {
@@ -120,9 +117,6 @@ class ProductDetailsFragment : Fragment() {
                 binding.viewPagerImage.adapter = viewAdapter
 
             }
-
-
-
         })
 
         productId?.let{

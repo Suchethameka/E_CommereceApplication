@@ -22,19 +22,15 @@ class ProductListFragment : Fragment(), ItemClickListener {
     private lateinit var productsListPresenter: ProductsListPresenter
     private lateinit var productDetailsFragment: ProductDetailsFragment
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         subCategoryId = arguments?.getString("sub_category_id")
-
-
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentProductListBinding.inflate(layoutInflater,container, false)
         return binding.root
     }
@@ -54,13 +50,9 @@ class ProductListFragment : Fragment(), ItemClickListener {
             }
 
         })
-
         subCategoryId?.let{
             productsListPresenter.getProducts(it)
         }
-
-
-
     }
     override fun isSelected(id: String) {
         productDetailsFragment = ProductDetailsFragment()

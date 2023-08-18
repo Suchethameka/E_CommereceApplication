@@ -3,6 +3,8 @@ package com.example.e_commereceapplication.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.ActivityShoppingCartBinding
@@ -16,6 +18,16 @@ class ShoppingCartActivity : AppCompatActivity() {
         setContentView(binding.root)
         initNavDrawer()
         navToSplash()
+        val themeSwitch: SwitchCompat = binding.navigationView.getHeaderView(0).findViewById(R.id.themeSwitch)
+
+
+        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

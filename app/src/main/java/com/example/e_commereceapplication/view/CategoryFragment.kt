@@ -17,48 +17,51 @@ import com.example.e_commereceapplication.presenter.MVPShoppingCart
 import com.google.android.material.snackbar.Snackbar
 
 
-class CategoryFragment : Fragment(), ItemClickListener {
+class CategoryFragment : Fragment() {
     private lateinit var binding: FragmentCategoryBinding
     private lateinit var categoryPresenter: CategoryPresenter
     private lateinit var subCategoryFragment: SubCategoryFragment
 
+    private val itemClickListener = object : ItemClickListener {
+        override fun isSelected(id: String) {
+            val bundle = Bundle()
+            bundle.putString("id", id)
+            subCategoryFragment = SubCategoryFragment()
+            subCategoryFragment.arguments = bundle
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragment_container, subCategoryFragment)?.commit()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
+
         categoryPresenter = CategoryPresenter(VolleyHandler(requireContext()), object :
             MVPShoppingCart.CategoryView {
             override fun setError() {
-                Snackbar.make(binding.root, "categories not found", Snackbar.LENGTH_LONG)
+                if (isAdded) {
+                    Snackbar.make(binding.root, "categories not found", Snackbar.LENGTH_LONG).show()
+                }
             }
 
             override fun setSuccess(categoriesResponse: CategoryResponse) {
-                val adapter = CategoryAdapter(categoriesResponse.categories, this@CategoryFragment)
-                binding.rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
-                binding.rvCategories.adapter = adapter
+                if (isAdded) {
+                    val adapter = CategoryAdapter(categoriesResponse.categories, itemClickListener)
+                    binding.rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
+                    binding.rvCategories.adapter = adapter
+                }
             }
-
         })
+
         categoryPresenter.getCategories()
-
-    }
-
-    override fun isSelected(id: String) {
-        val bundle = Bundle()
-        bundle.putString("id", id)
-        subCategoryFragment = SubCategoryFragment()
-        subCategoryFragment.arguments = bundle
-        activity?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.fragment_container, subCategoryFragment)?.commit()
     }
 }
+

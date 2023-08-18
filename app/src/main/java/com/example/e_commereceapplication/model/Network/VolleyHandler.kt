@@ -66,37 +66,37 @@ class VolleyHandler(val context: Context) {
     }
 
     fun loginUser(emailId:String, password:String,responseCallback: ResponseCallback){
-//        val staticEmail = "suchetha@gmail.com.com"
-//        val staticPassword = "1234"
+        val staticEmail = "suchetha@gmail.com"
+        val staticPassword = "1234"
+
+        if (emailId == staticEmail && password == staticPassword) {
+            responseCallback.success(null)
+        } else {
+            responseCallback.failure()
+        }
+
+//        val jsonRequest = JSONObject()
+//        jsonRequest.put("email_id", emailId)
+//        jsonRequest.put("password", password)
 //
-//        if (emailId == staticEmail && password == staticPassword) {
-//            responseCallback.success(null)
-//        } else {
-//            responseCallback.failure()
-//        }
-
-        val jsonRequest = JSONObject()
-        jsonRequest.put("email_id", emailId)
-        jsonRequest.put("password", password)
-
-        val stringRequest = JsonObjectRequest(
-            Request.Method.POST,
-            VolleyConstants.LOGIN_URL,
-            jsonRequest,
-            {
-
-                if(it.getString("message") == "Login successful"){
-                    responseCallback.success(null)
-                }else{
-                    responseCallback.failure()
-                }
-
-
-            },{
-                Log.i("logiError",it.message.toString())
-            }
-        )
-        requestQueue.add(stringRequest)
+//        val stringRequest = JsonObjectRequest(
+//            Request.Method.POST,
+//            VolleyConstants.LOGIN_URL,
+//            jsonRequest,
+//            {
+//
+//                if(it.getString("message") == "Login successful"){
+//                    responseCallback.success(null)
+//                }else{
+//                    responseCallback.failure()
+//                }
+//
+//
+//            },{
+//                Log.i("logiError",it.message.toString())
+//            }
+//        )
+//        requestQueue.add(stringRequest)
 
     }
 

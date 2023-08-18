@@ -38,7 +38,7 @@ class SplashFragment : Fragment() {
     }
 
     private fun navToIntroScreen(){
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, LoginFragment())?.commit()
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, CategoryFragment())?.commit()
     }
 
 }
