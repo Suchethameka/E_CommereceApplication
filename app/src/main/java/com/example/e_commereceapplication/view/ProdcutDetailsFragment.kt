@@ -8,16 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.adapters.ImageViewAdapter
 import com.example.e_commereceapplication.adapters.ReviewsAdapter
 import com.example.e_commereceapplication.adapters.SpecificationAdapter
 import com.example.e_commereceapplication.databinding.FragmentProdcutDetailsBinding
+import com.example.e_commereceapplication.model.Network.VolleyConstants
 import com.example.e_commereceapplication.model.Network.VolleyHandler
 import com.example.e_commereceapplication.model.Network.cart.CartItem
 import com.example.e_commereceapplication.model.Network.database.AppDatabase
 import com.example.e_commereceapplication.model.Network.database.CartDao
 import com.example.e_commereceapplication.model.Network.productDetailsModel.Product
 import com.example.e_commereceapplication.model.Network.productDetailsModel.ProductDescriptionResponse
+import com.example.e_commereceapplication.model.Network.productDetailsModel.Review
 import com.example.e_commereceapplication.presenter.MVPShoppingCart
 import com.example.e_commereceapplication.presenter.ProductDetailsPresenter
 
@@ -55,13 +58,13 @@ class ProductDetailsFragment : Fragment() {
 
             @SuppressLint("SetTextI18n")
             override fun setSuccess(productDescriptionResponse: ProductDescriptionResponse) {
-
+                //productDescriptionResponse
                 with(binding){
                     productDName.text = productDescriptionResponse.product.product_name
                     productDDescription.text = productDescriptionResponse.product.description
                     ratingBar.rating = productDescriptionResponse.product.average_rating.toFloat()
                     productDPrice.text = "$ ${productDescriptionResponse.product.price}"
-//                    val image = "${VolleyConstants.IMAGE_URL}${productDescriptionResponse.product.images.first().image}"
+
 
                 }
 
@@ -109,7 +112,7 @@ class ProductDetailsFragment : Fragment() {
                 binding.rvSpecifications.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvSpecifications.adapter = adapter
 
-                val reviewAdapter = ReviewsAdapter(productDescriptionResponse.product.reviews)
+                val reviewAdapter = ReviewsAdapter(productDescriptionResponse.product.reviews as List<Review>)
                 binding.rvReviews.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvReviews.adapter = reviewAdapter
 

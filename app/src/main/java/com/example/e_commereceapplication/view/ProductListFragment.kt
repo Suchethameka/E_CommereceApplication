@@ -38,7 +38,6 @@ class ProductListFragment : Fragment(), ItemClickListener {
         binding = FragmentProductListBinding.inflate(layoutInflater,container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,7 +62,6 @@ class ProductListFragment : Fragment(), ItemClickListener {
 
 
     }
-
     override fun isSelected(id: String) {
         productDetailsFragment = ProductDetailsFragment()
         val bundle = Bundle()
@@ -71,13 +69,8 @@ class ProductListFragment : Fragment(), ItemClickListener {
         productDetailsFragment.arguments = bundle
         activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container,productDetailsFragment)?.addToBackStack(null)?.commit()
     }
-
-
     override fun onResume() {
         super.onResume()
         (activity as? ShoppingCartActivity)?.onChangeToolbarTitle("SMART PHONES")
     }
-
-
-
 }
