@@ -20,7 +20,7 @@ class ProductListFragment : Fragment(), ItemClickListener {
     private lateinit var binding : FragmentProductListBinding
     private var subCategoryId: String? = null
     private lateinit var productsListPresenter: ProductsListPresenter
-    private lateinit var productDetailsFragment: ProdcutDetailsFragment
+    private lateinit var productDetailsFragment: ProductDetailsFragment
 
 
 
@@ -42,8 +42,8 @@ class ProductListFragment : Fragment(), ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        productsListPresenter = ProductsListPresenter(VolleyHandler(requireContext()),object:
-            MVPShoppingCart.ProductView{
+        (activity as? ShoppingCartActivity)?.showBackButton()
+        productsListPresenter = ProductsListPresenter(VolleyHandler(requireContext()),object:MVPShoppingCart.ProductView{
             override fun setError() {
 
             }
@@ -65,11 +65,19 @@ class ProductListFragment : Fragment(), ItemClickListener {
     }
 
     override fun isSelected(id: String) {
-        productDetailsFragment = ProdcutDetailsFragment()
+        productDetailsFragment = ProductDetailsFragment()
         val bundle = Bundle()
         bundle.putString("productId",id)
         productDetailsFragment.arguments = bundle
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container,productDetailsFragment)?.commit()
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container,productDetailsFragment)?.addToBackStack(null)?.commit()
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? ShoppingCartActivity)?.onChangeToolbarTitle("SMART PHONES")
+    }
+
+
 
 }

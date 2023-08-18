@@ -1,6 +1,7 @@
 package com.example.e_commereceapplication.presenter
 
 import com.example.e_commereceapplication.model.Network.User.UserProfile
+import com.example.e_commereceapplication.model.Network.cart.CartItem
 import com.example.e_commereceapplication.model.Network.category.CategoryResponse
 import com.example.e_commereceapplication.model.Network.productslist.ProductListResponse
 import com.example.e_commereceapplication.model.Network.subCategory.SubcategoryResponse
@@ -56,11 +57,22 @@ interface MVPShoppingCart {
     interface IProductDetailsPresenter{
 
         fun getProductDetails(productId:String)
+
+        fun addToCart(cartItem: CartItem)
+
+        fun deleteItemInCart(cartItem: CartItem)
+
+        fun getProductWithId(productId: String): CartItem?
     }
 
     interface ProductDetailsView{
         fun setError()
         fun setSuccess(productDescriptionResponse: ProductDescriptionResponse)
+    }
+
+    interface ICartPresenter{
+
+        fun getCartItems(): List<CartItem>
     }
 
 }

@@ -1,33 +1,40 @@
 package com.example.e_commereceapplication.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commereceapplication.R
+import com.example.e_commereceapplication.adapters.ImageViewAdapter
+import com.example.e_commereceapplication.adapters.ReviewsAdapter
+import com.example.e_commereceapplication.adapters.SpecificationAdapter
+import com.example.e_commereceapplication.databinding.FragmentProdcutDetailsBinding
+import com.example.e_commereceapplication.model.Network.VolleyConstants
+import com.example.e_commereceapplication.model.Network.VolleyHandler
+import com.example.e_commereceapplication.model.Network.cart.CartItem
+import com.example.e_commereceapplication.model.Network.database.AppDatabase
+import com.example.e_commereceapplication.model.Network.database.CartDao
+import com.example.e_commereceapplication.model.Network.productDetailsModel.Product
+import com.example.e_commereceapplication.model.Network.productDetailsModel.ProductDescriptionResponse
+import com.example.e_commereceapplication.presenter.MVPShoppingCart
+import com.example.e_commereceapplication.presenter.ProductDetailsPresenter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ProductDetailsFragment : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProdcutDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ProdcutDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding:FragmentProdcutDetailsBinding
+    private lateinit var presenter: ProductDetailsPresenter
+    private lateinit var cartDao: CartDao
+    private lateinit var viewAdapter: ImageViewAdapter
+    private var productId:String?= null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        productId = arguments?.getString("productId")
     }
 
     override fun onCreateView(
@@ -35,26 +42,116 @@ class ProdcutDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prodcut_details, container, false)
+        binding = FragmentProdcutDetailsBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProdcutDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProdcutDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as? ShoppingCartActivity)?.showBackButton()
+        initDB()
+        presenter = ProductDetailsPresenter(VolleyHandler(requireContext()), cartDao,object:MVPShoppingCart.ProductDetailsView{
+            override fun setError() {
+                TODO("Not yet implemented")
             }
+
+            @SuppressLint("SetTextI18n")
+            override fun setSuccess(productDescriptionResponse: ProductDescriptionResponse) {
+
+                with(binding){
+                    productDName.text = productDescriptionResponse.product.product_name
+                    productDDescription.text = productDescriptionResponse.product.description
+                    ratingBar.rating = productDescriptionResponse.product.average_rating.toFloat()
+                    productDPrice.text = "$ ${productDescriptionResponse.product.price}"
+//                    val image = "${VolleyConstants.IMAGE_URL}${productDescriptionResponse.product.images.first().image}"
+
+                }
+
+                binding.addToCart.setOnClickListener {
+                    with(productDescriptionResponse.product){
+                        addToCart(this, 1)
+                    }
+                    it.isVisible = false
+                    binding.quantityStepper.isVisible = true
+                }
+
+                presenter.getProductWithId(productDescriptionResponse.product.product_id)?.let {
+                    binding.quantityStepper.setQuantity(it.quantity)
+                    binding.addToCart.isVisible = false
+                    binding.quantityStepper.isVisible = true
+                }
+
+                binding.quantityStepper.setQuantityStepperListener(object : QuantityStepperListener{
+                    override fun onQuantityChanged(quantity: Int) {
+                        with(productDescriptionResponse.product){
+                            addToCart(this, quantity)
+                        }
+
+                    }
+
+                    override fun onQuantityZero() {
+                        with(productDescriptionResponse.product){
+                            val cartItem = CartItem(
+                                id=product_id,
+                                unitPrice = price,
+                                product_image_url= product_image_url,
+                                product_name = product_name,
+                                description = description
+
+                            )
+                            presenter.deleteItemInCart(cartItem)
+                        }
+                        binding.addToCart.isVisible = true
+                        binding.quantityStepper.isVisible = false
+                    }
+
+                })
+
+                val adapter = SpecificationAdapter(productDescriptionResponse.product.specifications)
+                binding.rvSpecifications.layoutManager = LinearLayoutManager(requireContext())
+                binding.rvSpecifications.adapter = adapter
+
+                val reviewAdapter = ReviewsAdapter(productDescriptionResponse.product.reviews)
+                binding.rvReviews.layoutManager = LinearLayoutManager(requireContext())
+                binding.rvReviews.adapter = reviewAdapter
+
+                viewAdapter = ImageViewAdapter(productDescriptionResponse.product.images, requireContext())
+                binding.viewPagerImage.adapter = viewAdapter
+
+            }
+
+
+
+        })
+
+        productId?.let{
+            presenter.getProductDetails(it)
+        }
     }
+
+    private fun initDB() {
+        val database = AppDatabase.getAppDatabase(requireContext())
+        cartDao = database.getCartDao()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? ShoppingCartActivity)?.onChangeToolbarTitle("Details")
+    }
+
+    fun addToCart(product: Product, quantity:Int){
+        with(product) {
+            val cartItem = CartItem(
+                id = product_id,
+                unitPrice = price,
+                product_image_url = product_image_url,
+                product_name = product_name,
+                description = description,
+                quantity = quantity
+
+            )
+            presenter.addToCart(cartItem)
+        }
+    }
+
 }

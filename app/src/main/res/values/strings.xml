@@ -26,4 +26,12 @@
     <string name="_9892590355">+1 9892590355</string>
     <string name="phone">Phone</string>
     <string name="phones">Phones</string>
+    <string name="description">Description</string>
+    <string name="comment">Comment</string>
+    <string name="model_name">Model Name</string>
+    <string name="real_me">RealMe</string>
+    <string name="UserReviews">User Reviews</string>
+    <string name="specifications">Specifications</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="price">Price</string>
 </resources>
