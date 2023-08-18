@@ -9,9 +9,9 @@ import com.example.e_commereceapplication.model.Network.productDetailsModel.Spec
 class SpecificationAdapter(private val specificationList:List<Specification>):
     RecyclerView.Adapter<SpecificationAdapter.SpecificationViewHolder>() {
 
-    inner class SpecificationViewHolder(val binding: ItemSpecificationsBinding):
+    inner class SpecificationViewHolder(val binding:ItemSpecificationsBinding):
         RecyclerView.ViewHolder(binding.root){
-        fun bind(specification: Specification){
+        fun bind(specification:Specification){
             with(binding){
                 specificationTitle.text = specification.title
                 specificationValue.text = specification.specification

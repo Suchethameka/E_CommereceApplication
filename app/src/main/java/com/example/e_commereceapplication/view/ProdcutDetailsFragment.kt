@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.adapters.ImageViewAdapter
 import com.example.e_commereceapplication.adapters.ReviewsAdapter
 import com.example.e_commereceapplication.adapters.SpecificationAdapter
 import com.example.e_commereceapplication.databinding.FragmentProdcutDetailsBinding
-import com.example.e_commereceapplication.model.Network.VolleyConstants
 import com.example.e_commereceapplication.model.Network.VolleyHandler
 import com.example.e_commereceapplication.model.Network.cart.CartItem
 import com.example.e_commereceapplication.model.Network.database.AppDatabase

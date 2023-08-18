@@ -2,8 +2,12 @@ package com.example.e_commereceapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commereceapplication.databinding.ItemCartBinding
+import com.example.e_commereceapplication.model.Network.VolleyConstants
 import com.example.e_commereceapplication.model.Network.cart.CartItem
+import com.squareup.picasso.Picasso
 
 class CartAdapter(private val cartList:List<CartItem>, private val showQuantityStepper: Boolean = true):
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commereceapplication.databinding.ItemReviewsBinding
 import com.example.e_commereceapplication.model.Network.productDetailsModel.Review
 
-class ReviewsAdapter(private val reviewList :List<Review>):
+class ReviewsAdapter(private val reviewList: List<Any>):
     RecyclerView.Adapter<ReviewsAdapter.ReviewViewHolder>() {
     inner class ReviewViewHolder(val binding: ItemReviewsBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(review: Review) {

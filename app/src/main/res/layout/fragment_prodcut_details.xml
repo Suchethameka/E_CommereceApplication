@@ -71,7 +71,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/productD_price"
             app:layout_constraintTop_toBottomOf="@id/viewPagerImage" />
-        <com.apolisb42.shoppingcart.view.QuantityStepper
+        <com.example.e_commereceapplication.view.QuantityStepper
             android:id="@+id/quantity_stepper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
