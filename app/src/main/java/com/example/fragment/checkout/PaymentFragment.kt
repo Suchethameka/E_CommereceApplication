@@ -1,0 +1,53 @@
+package com.example.fragment.checkout
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
+import com.example.adapter.PaymentAdapter
+import com.example.e_commereceapplication.R
+import com.example.e_commereceapplication.databinding.FragmentPaymentBinding
+
+class PaymentFragment : Fragment(), PaymentAdapter.ItemClickPaymentListener {
+
+    private lateinit var binding: FragmentPaymentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val paymentList = listOf(
+            "Cash On Delivery",
+            "Internet Banking",
+            "Debit Card / Credit Card",
+            "Pay Pal")
+
+        val adapter = PaymentAdapter(paymentList, this)
+        val layoutManager = LinearLayoutManager(requireContext())
+
+        binding.apply {
+            rcPayment.adapter = adapter
+            rcPayment.layoutManager = layoutManager
+        }
+
+        binding.btnNext.setOnClickListener {
+            val viewPager = requireActivity().findViewById<ViewPager2>(R.id.viewPager2)
+            val currentItem = viewPager.currentItem
+            viewPager.setCurrentItem(currentItem + 1, true)
+        }
+    }
+
+    override fun onItemClick(payment: String) {
+
+    }
+}
