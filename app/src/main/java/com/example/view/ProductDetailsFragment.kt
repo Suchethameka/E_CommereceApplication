@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.adapter.CategoryAdapter
+import com.example.view.adapter.CategoryAdapter
 import com.example.e_commereceapplication.databinding.FragmentProductDetailsBinding
 import com.example.model.local.DbHandler
 import com.example.model.local.dao.ProductDao

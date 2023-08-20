@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.adapter.ProductsAdapter
+import com.example.view.adapter.ProductsAdapter
 import com.example.view.activity.MainActivity
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentSubCategoryProductsBinding

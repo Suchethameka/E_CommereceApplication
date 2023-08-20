@@ -49,6 +49,7 @@
         android:textColor="@color/orange_app"
         android:text="@string/_640"
         android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginLeft="370dp"
         app:layout_constraintEnd_toStartOf="@id/txt_addToCart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_product"/>
@@ -60,7 +61,8 @@
         android:textColor="@color/primary_app_color"
         android:textSize="@dimen/_27sp"
         android:text="@string/add_to_cart"
-        app:layout_constraintStart_toEndOf="@id/txt_priceOfProduct"
+        android:layout_marginRight="@dimen/_50dp"
+        app:layout_constraintStart_toStartOf="@id/txt_priceOfProduct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_product"/>

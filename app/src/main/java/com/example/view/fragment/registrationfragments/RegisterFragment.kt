@@ -1,4 +1,4 @@
-package com.example.fragment.registrationfragments
+package com.example.view.fragment.registrationfragments
 
 import android.os.Bundle
 import android.util.Log

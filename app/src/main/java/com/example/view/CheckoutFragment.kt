@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.adapter.ViewpagerCheckoutAdapter
+import com.example.view.adapter.ViewpagerCheckoutAdapter
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentCheckoutBinding
-import com.example.fragment.checkout.CartItemsFragment
-import com.example.fragment.checkout.DeliveryFragment
-import com.example.fragment.checkout.PaymentFragment
-import com.example.fragment.checkout.SummaryFragment
+import com.example.view.fragment.checkout.CartItemsFragment
+import com.example.view.fragment.checkout.DeliveryFragment
+import com.example.view.fragment.checkout.PaymentFragment
+import com.example.view.fragment.checkout.SummaryFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class CheckoutFragment : Fragment() {

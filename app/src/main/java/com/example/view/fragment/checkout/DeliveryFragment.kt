@@ -1,4 +1,4 @@
-package com.example.fragment.checkout
+package com.example.view.fragment.checkout
 
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.adapter.AddressAdapter
+import com.example.view.adapter.AddressAdapter
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.AddAddresDialogBinding
 import com.example.e_commereceapplication.databinding.FragmentDeliveryBinding
@@ -80,18 +80,12 @@ class DeliveryFragment : Fragment(), AddressAdapter.ItemClickRadioListener {
         val requestQueue = Volley.newRequestQueue(context)
         requestQueue.add(request)
     }
-
     private fun displayAddresses(address: List<Address>) {
 
         val adapter = AddressAdapter(address, this)
         val layoutManager = LinearLayoutManager(requireContext())
 
-        binding.apply {
-            rcAddresses.adapter = adapter
-            rcAddresses.layoutManager = layoutManager
-        }
     }
-
     private fun addAddressDialog() {
         val signUpBinding = AddAddresDialogBinding.inflate(layoutInflater)
 
@@ -102,13 +96,6 @@ class DeliveryFragment : Fragment(), AddressAdapter.ItemClickRadioListener {
 
         val dialog = builder.create()
         dialog.window?.setGravity(Gravity.BOTTOM)
-
-        // Use this as template
-        /* signUpBinding.btnSignup.setOnClickListener {
-            showToast("Login success!")
-            dialog.dismiss()
-        } */
-
         dialog.show()
     }
 

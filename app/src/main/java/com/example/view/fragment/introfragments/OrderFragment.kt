@@ -1,4 +1,4 @@
-package com.example.fragment.introfragments
+package com.example.view.fragment.introfragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,8 @@ import com.example.view.activity.MainActivity
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentOrderBinding
 import com.example.model.preferences.SharedPreference
-
+import com.example.view.activity.Registration
+import com.example.view.fragment.registrationfragments.LoginFragment
 
 
 class OrderFragment : Fragment() {
@@ -34,7 +35,7 @@ class OrderFragment : Fragment() {
         binding.btnLetsShop.setOnClickListener {
             sharedPreference.saveBoolean("isFirstTime", true)
 
-            val intent = Intent(requireContext(), MainActivity::class.java)
+            val intent = Intent(requireContext(),Registration::class.java)
             startActivity(intent)
         }
 

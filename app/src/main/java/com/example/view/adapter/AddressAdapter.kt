@@ -1,4 +1,4 @@
-package com.example.adapter
+package com.example.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,8 @@ import com.example.e_commereceapplication.databinding.AddressItemBinding
 import com.example.model.remote.dto.Address
 
 class AddressAdapter(private val addresses: List<Address>,
-                     private val itemClickRadioListener: ItemClickRadioListener) :
+                     private val itemClickRadioListener: ItemClickRadioListener
+) :
     RecyclerView.Adapter<AddressAdapter.AddressesViewHolder>(){
 
     interface ItemClickRadioListener {
@@ -20,13 +21,13 @@ class AddressAdapter(private val addresses: List<Address>,
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AddressAdapter.AddressesViewHolder {
+    ): AddressesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = AddressItemBinding.inflate(layoutInflater, parent, false)
         return AddressesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AddressAdapter.AddressesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AddressesViewHolder, position: Int) {
         holder.bind(addresses[position])
     }
 

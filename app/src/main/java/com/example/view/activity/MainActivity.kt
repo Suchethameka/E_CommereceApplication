@@ -86,11 +86,10 @@ class MainActivity : AppCompatActivity(), LogoutContract.LogoutView {
                 }
                 R.id.logout -> {
                     sharedPreference = SharedPreference(this)
-                    val email = sharedPreference.getEmail("email")
-                    if (email != null) {
-                        logoutPresenter.performLogout(email)
-                    }
                     sharedPreference.clearEmail()
+                    val intent = Intent(this, Registration::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
             binding.drawerLayout.closeDrawer(GravityCompat.START)

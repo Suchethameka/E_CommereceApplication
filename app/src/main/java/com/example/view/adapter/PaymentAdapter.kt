@@ -1,4 +1,4 @@
-package com.example.adapter
+package com.example.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commereceapplication.databinding.PaymentItemBinding
 
 class PaymentAdapter(private var payments: List<String>,
-                     private val itemClickPaymentListener: ItemClickPaymentListener) :
+                     private val itemClickPaymentListener: ItemClickPaymentListener
+) :
     RecyclerView.Adapter<PaymentAdapter.PaymentViewHolder>() {
 
     interface ItemClickPaymentListener {
@@ -18,13 +19,13 @@ class PaymentAdapter(private var payments: List<String>,
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PaymentAdapter.PaymentViewHolder {
+    ): PaymentViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = PaymentItemBinding.inflate(layoutInflater, parent, false)
         return PaymentViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PaymentAdapter.PaymentViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PaymentViewHolder, position: Int) {
         holder.bind(payments[position])
     }
 

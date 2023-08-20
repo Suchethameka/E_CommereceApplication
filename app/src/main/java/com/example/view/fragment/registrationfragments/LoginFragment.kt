@@ -1,4 +1,4 @@
-package com.example.fragment.registrationfragments
+package com.example.view.fragment.registrationfragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -43,12 +43,8 @@ class LoginFragment : Fragment(), LoginContract.LoginView {
         }
 
         binding.btnLogin.setOnClickListener {
-            val email = binding.edEmail.text.toString()
-            val password = binding.edPassword.text.toString()
-
-            sharedPreference = SharedPreference(requireContext())
-            sharedPreference.saveEmail("email", email)
-            loginPresenter.performLogin(email, password)
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

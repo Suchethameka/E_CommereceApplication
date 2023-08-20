@@ -1,4 +1,4 @@
-package com.example.adapter
+package com.example.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -23,13 +23,13 @@ class CartProductsAdapter(private val context: Context,
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CartProductsAdapter.ViewHolder {
+    ): ViewHolder {
         initDao()
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = CartProductItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
-    override fun onBindViewHolder(holder: CartProductsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(products[position])
     }
 

@@ -1,4 +1,4 @@
-package com.example.adapter
+package com.example.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -15,7 +15,8 @@ import com.squareup.picasso.Picasso
 
 class ProductsAdapter(private val context: Context,
                       private val products: MutableList<Product>,
-                      private val itemProductClickListener: ItemProductClickListener) :
+                      private val itemProductClickListener: ItemProductClickListener
+) :
     RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     private lateinit var dbHandler: DbHandler

@@ -1,4 +1,4 @@
-package com.example.fragment.checkout
+package com.example.view.fragment.checkout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,23 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.adapter.CheckoutItemAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.example.view.adapter.CheckoutItemAdapter
 import com.example.e_commereceapplication.R
-import com.example.e_commereceapplication.databinding.FragmentSummaryBinding
+import com.example.e_commereceapplication.databinding.FragmentCartItemsBinding
 import com.example.model.local.DbHandler
 import com.example.model.local.dao.ProductDao
 
-class SummaryFragment : Fragment() {
 
-    private lateinit var binding: FragmentSummaryBinding
+class CartItemsFragment : Fragment() {
+
+    private lateinit var binding: FragmentCartItemsBinding
     private lateinit var dbHandler: DbHandler
     private lateinit var productDao: ProductDao
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         initDao()
-        binding = FragmentSummaryBinding.inflate(inflater, container, false)
+        binding = FragmentCartItemsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,17 +39,16 @@ class SummaryFragment : Fragment() {
         binding.apply {
             rcProducts.adapter = adapter
             rcProducts.layoutManager = layoutManager
+
+            txtTotal.text = "$ ${productDao.calculateTotalPriceInCart()}"
+
+            binding.btnNext.setOnClickListener {
+                val viewPager = requireActivity().findViewById<ViewPager2>(R.id.viewPager2)
+                val currentItem = viewPager.currentItem
+                viewPager.setCurrentItem(currentItem + 1, true)
+            }
+
         }
-
-
-        binding.apply {
-            txtDeliveryTitle.text = "working on it"
-            txtDeliveryAddress.text = "working on it"
-
-            txtPaymentHolder.text = "working on it"
-            txtTotalBillHolder.text = "$ ${productDao.calculateTotalPriceInCart()}"
-        }
-
     }
 
     private fun initDao() {

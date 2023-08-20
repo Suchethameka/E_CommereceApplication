@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.adapter.SubCategoryAdapter
+import com.example.view.adapter.SubCategoryAdapter
 import com.example.e_commereceapplication.databinding.CustomTabLayoutBinding
 import com.example.e_commereceapplication.databinding.FragmentSubCategoryBinding
 import com.example.model.remote.dto.Category

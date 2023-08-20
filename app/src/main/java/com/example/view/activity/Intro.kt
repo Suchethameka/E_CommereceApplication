@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.adapter.ViewpagerAdapter
+import com.example.view.adapter.ViewpagerAdapter
 import com.example.e_commereceapplication.databinding.ActivityIntroBinding
 import com.example.e_commereceapplication.databinding.IndicatorDotsBinding
-import com.example.fragment.introfragments.CartFragmentIntro
-import com.example.fragment.introfragments.OrderFragment
-import com.example.fragment.introfragments.ProductsFragment
+import com.example.view.fragment.introfragments.CartFragmentIntro
+import com.example.view.fragment.introfragments.OrderFragment
+import com.example.view.fragment.introfragments.ProductsFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class Intro : AppCompatActivity() {

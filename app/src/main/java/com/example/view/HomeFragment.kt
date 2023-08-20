@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.adapter.CategoryAdapter
+import com.example.view.adapter.CategoryAdapter
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentHomeBinding
 import com.example.model.VolleyHandler

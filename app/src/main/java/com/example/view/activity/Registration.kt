@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.ActivityRegistrationBinding
-import com.example.fragment.registrationfragments.LoginFragment
+import com.example.view.fragment.registrationfragments.LoginFragment
 
 class Registration : AppCompatActivity() {
 

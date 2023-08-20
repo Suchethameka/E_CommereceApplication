@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.adapter.CartProductsAdapter
+import com.example.view.adapter.CartProductsAdapter
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentCartBinding
 import com.example.model.local.DbHandler

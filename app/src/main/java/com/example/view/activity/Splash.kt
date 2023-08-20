@@ -7,6 +7,7 @@ import com.example.e_commereceapplication.R
 import com.example.model.preferences.SharedPreference
 import com.example.presenter.SplashContract
 import com.example.presenter.SplashPresenter
+import com.example.view.fragment.registrationfragments.LoginFragment
 
 class Splash : AppCompatActivity(), SplashContract.SplashView {
     private lateinit var splashPresenter: SplashContract.SplashPresenter
@@ -19,12 +20,12 @@ class Splash : AppCompatActivity(), SplashContract.SplashView {
     }
 
     override fun navigateToRegistration() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this,Registration::class.java))
         finish()
     }
 
     override fun navigateToIntro() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, Intro::class.java))
         finish()
     }
 }

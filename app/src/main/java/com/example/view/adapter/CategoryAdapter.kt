@@ -1,4 +1,4 @@
-package com.example.adapter
+package com.example.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +14,13 @@ class CategoryAdapter(private val categories: List<Category>, private val itemCl
     interface ItemClickListener {
         fun onItemClick(categories: Category)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = CategoryItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(categories[position])
 
     }
@@ -34,7 +34,7 @@ class CategoryAdapter(private val categories: List<Category>, private val itemCl
             binding.root.setOnClickListener(this)
         }            fun bind(categories: Category){
 
-            Picasso.get().load(URL_IMAGE+categories.category_image_url).into(binding.imgCategory)
+            Picasso.get().load(URL_IMAGE +categories.category_image_url).into(binding.imgCategory)
             binding.txtCategory.text = categories.category_name
         }
 

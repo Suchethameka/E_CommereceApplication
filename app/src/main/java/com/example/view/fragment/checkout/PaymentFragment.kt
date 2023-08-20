@@ -1,4 +1,4 @@
-package com.example.fragment.checkout
+package com.example.view.fragment.checkout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.adapter.PaymentAdapter
+import com.example.view.adapter.PaymentAdapter
 import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentPaymentBinding
 

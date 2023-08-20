@@ -1,4 +1,4 @@
-package com.example.adapter
+package com.example.view.adapter
 
 class ProductDetailsAdapter() {
 }
