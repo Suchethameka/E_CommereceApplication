@@ -17,6 +17,7 @@ import com.example.presenter.LogoutContract
 import com.example.presenter.LogoutPresenter
 import com.example.view.CartFragment
 import com.example.view.HomeFragment
+import com.example.view.OrdersFragment
 
 class MainActivity : AppCompatActivity(), LogoutContract.LogoutView {
 
@@ -90,6 +91,11 @@ class MainActivity : AppCompatActivity(), LogoutContract.LogoutView {
                     val intent = Intent(this, Registration::class.java)
                     startActivity(intent)
                     finish()
+                }
+                R.id.orders->{
+                    handleMenuEvent(OrdersFragment())
+                    binding.txtTitle.text = "ORDERS"
+                    binding.imgSearch.visibility = View.GONE
                 }
             }
             binding.drawerLayout.closeDrawer(GravityCompat.START)

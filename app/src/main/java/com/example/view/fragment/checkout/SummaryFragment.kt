@@ -1,5 +1,6 @@
 package com.example.view.fragment.checkout
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.example.e_commereceapplication.R
 import com.example.e_commereceapplication.databinding.FragmentSummaryBinding
 import com.example.model.local.DbHandler
 import com.example.model.local.dao.ProductDao
+import com.example.view.activity.Confirmation
 
 class SummaryFragment : Fragment() {
 
@@ -41,6 +43,10 @@ class SummaryFragment : Fragment() {
 
         binding.apply {
             txtTotalBillHolder.text = "$ ${productDao.calculateTotalPriceInCart()}"
+        }
+        binding.btnPlaceOrder.setOnClickListener {
+            val intent = Intent(requireContext(), Confirmation::class.java)
+            startActivity(intent)
         }
 
     }
