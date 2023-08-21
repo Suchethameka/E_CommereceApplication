@@ -1,98 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_10dp"
+    app:cardCornerRadius="10dp"
+    android:background="@color/background_cardview"
+    app:cardElevation="10dp">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="@dimen/_8dp"
-        app:cardElevation="@dimen/_8dp"
-        >
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/iphone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_nameOfProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange_app"
+            style="@style/NavigationViewTextAppearance"
+            app:layout_constraintStart_toEndOf="@id/img_product"
+            android:text="@string/realme_nazro_50"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_descriptionOfProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_17sp"
+            app:layout_constraintStart_toEndOf="@id/img_product"
+            android:text="@string/dummy_text_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_nameOfProduct"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_priceOfProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/img_product"
+            style="@style/NavigationViewTextAppearance"
+            android:textColor="@color/orange_app"
+            android:text="@string/_200"
+            app:layout_constraintTop_toBottomOf="@id/txt_descriptionOfProduct"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_addToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/txt_priceOfProduct"
+            android:textColor="@color/primary_app_color"
+            android:textSize="@dimen/_27sp"
+            android:text="@string/add_to_cart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_descriptionOfProduct"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_16dp">
+            android:id="@+id/layout_addToCart"
+            app:layout_constraintTop_toBottomOf="@id/txt_descriptionOfProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_priceOfProduct"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_phone"
-                android:layout_width="80dp"
-                android:layout_height="120dp"
-                android:src="@drawable/baseline_phone_android_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <androidx.appcompat.widget.AppCompatButton
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/txt_quantitiy_cart"
+                android:id="@+id/btn_plus"
+                android:text="@string/add_plus"
+                android:textSize="@dimen/_17sp"
+                android:textColor="@color/white"
+                android:padding="4dp"
+                android:background="@color/primary_app_color"
+                android:layout_width="36dp"
+                android:layout_height="36dp"/>
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/product_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_minus"
+                android:id="@+id/txt_quantitiy_cart"
+                android:textSize="@dimen/_17sp"
+                android:text="1"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintTop_toTopOf="@id/btn_minus"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/image_phone"
-                app:layout_constraintTop_toTopOf="@id/image_phone"
-                android:layout_marginStart="@dimen/_8dp"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_marginTop="@dimen/_18dp"
-                android:textColor="@color/orange"
-                android:text="@string/phone"/>
+                android:layout_height="wrap_content"/>
 
-            <androidx.appcompat.widget.AppCompatRatingBar
-                android:id="@+id/rating_bar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:isIndicator="true"
-                android:layout_marginTop="@dimen/_4dp"
-                android:numStars="5"
-                android:rating="4"
-                app:layout_constraintHorizontal_bias="1"
+            <androidx.appcompat.widget.AppCompatButton
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/product_name"
-                app:layout_constraintTop_toTopOf="@+id/product_name" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/product_description"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8dp"
-                android:layout_marginTop="@dimen/_18dp"
-                android:text="Description"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image_phone"
-                app:layout_constraintTop_toBottomOf="@id/product_name" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/image_phone"
-                app:layout_constraintTop_toBottomOf="@id/product_description"
-                android:layout_marginStart="@dimen/_8dp"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_marginTop="@dimen/_18dp"
-                android:textColor="@color/orange"
-                android:text="price"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/addToCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4dp"
-                android:text="ADD TO CART"
-                app:layout_constraintHorizontal_bias="1"
-                android:textColor="#2A93E8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/product_price"
-                app:layout_constraintTop_toTopOf="@id/product_price" />
-
-
+                android:id="@+id/btn_minus"
+                android:background="@color/primary_app_color"
+                android:textSize="@dimen/_17sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/cart_minus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
