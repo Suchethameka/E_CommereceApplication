@@ -16,6 +16,5 @@ class DbHandler(private val context: Context) : SQLiteOpenHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // Upgrades go here
     }
 }

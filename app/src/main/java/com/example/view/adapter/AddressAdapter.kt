@@ -55,11 +55,6 @@ class AddressAdapter(private val addresses: List<Address>,
                         notifyItemChanged(previousSelectedPosition)
                         notifyItemChanged(position)
                         itemClickRadioListener.onItemClick(addresses[position])
-
-                        /*
-                        val selectedAddress = addresses[position]
-                        val info = Info(selectedAddress.address)
-                        infoDao.insert(info) */
                     }
                 }
             }
