@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.e_commereceapplication.R
@@ -96,6 +97,15 @@ class MainActivity : AppCompatActivity(), LogoutContract.LogoutView {
                     handleMenuEvent(OrdersFragment())
                     binding.txtTitle.text = "ORDERS"
                     binding.imgSearch.visibility = View.GONE
+                }
+                R.id.switchTheme -> {
+                    if (menuItems.isChecked) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    }
+                    recreate()
+                    true
                 }
             }
             binding.drawerLayout.closeDrawer(GravityCompat.START)
